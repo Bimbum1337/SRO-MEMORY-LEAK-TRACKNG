@@ -74,7 +74,7 @@ void CRTModSound::ReleaseToPool(CRTModSound* pSound)
     g_soundPool.Free(pSound);
 }
 
-int CRTModSound::Init(CFxModManager* pOwnerMgr, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam)
+int CRTModSound::Init(CRTModSet* pOwnerMgr, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam)
 {
     if (!CRTMod::Init(pOwnerMgr, pTimeSource, nParam2, pDesc, nSharedParam))
         return 0;

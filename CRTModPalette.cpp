@@ -33,19 +33,19 @@ void CRTModPalette::ReleaseToPool(CRTModPalette* pPalette)
     g_palettePool.Free(pPalette);
 }
 
-CFxMod* CRTModPalette::AddTrack(CFxMod* pTrack)
+CRTMod* CRTModPalette::AddTrack(CRTMod* pTrack)
 {
     m_tracks.push_back(pTrack);
     return pTrack;
 }
 
-CFxMod* CRTModPalette::AddNamedTrack(CFxMod* pTrack)
+CRTMod* CRTModPalette::AddNamedTrack(CRTMod* pTrack)
 {
     m_namedTracks.push_back(pTrack);
     return pTrack;
 }
 
-void CRTModPalette::InsertKeyedTrack(int nKey, CFxMod* pTrack)
+void CRTModPalette::InsertKeyedTrack(int nKey, CRTMod* pTrack)
 {
     m_keyedTracks[nKey] = pTrack;
 }

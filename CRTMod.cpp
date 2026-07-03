@@ -28,7 +28,7 @@ CRTMod::~CRTMod()
 {
 }
 
-int CRTMod::Init(CFxModManager* pOwnerMgr, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam)
+int CRTMod::Init(CRTModSet* pOwnerMgr, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam)
 {
     m_pOwnerMgr = pOwnerMgr;
     m_pTimeSource = pTimeSource;

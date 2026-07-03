@@ -15,7 +15,7 @@ public:
     static CRTModSound* AllocateAndConstruct();
     static void ReleaseToPool(CRTModSound* pSound);
 
-    virtual int Init(CFxModManager* pOwnerMgr, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam);
+    virtual int Init(CRTModSet* pOwnerMgr, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam);
     virtual void Update(int nElapsed);
     virtual void StopAllTracks();
     virtual int PlayTrack(unsigned int nIndex);

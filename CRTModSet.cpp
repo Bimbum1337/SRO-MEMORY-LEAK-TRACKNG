@@ -1,14 +1,10 @@
 #include "CRTModSet.h"
+#include "CRTMod.h"
+#include "CRTModFactory.h"
 #include "CMemPool.h"
 #include <new>
 
 static CMemPool<5994344087689428992ULL, CRTModSet, 100, 1> g_modSetPool;
-
-class CFxMod
-{
-public:
-	virtual ~CFxMod() {}
-};
 
 CRTModSet::CRTModSet()
 	: m_dwId(0)
@@ -38,17 +34,28 @@ void CRTModSet::ReleaseToPool(CRTModSet* pModSet)
 	g_modSetPool.Free(pModSet);
 }
 
-void CRTModSet::AddTrack(CFxMod* pTrack)
+CRTMod* CRTModSet::CreateTrack(int nPackedTypeId, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam)
 {
+	CRTMod* pTrack = CreateRTModByTypeId(nPackedTypeId, pDesc);
+	if (!pTrack)
+		return 0;
+
+	if (!pTrack->Init(this, pTimeSource, nParam2, pDesc, nSharedParam))
+	{
+		DestroyRTModByTag(pTrack);
+		return 0;
+	}
+
 	m_listTracks.push_back(pTrack);
+	return pTrack;
 }
 
 void CRTModSet::ClearTracks()
 {
-	std::list<CFxMod*>::iterator it = m_listTracks.begin();
+	std::list<CRTMod*>::iterator it = m_listTracks.begin();
 	while (it != m_listTracks.end())
 	{
-		delete *it;
+		DestroyRTModByTag(*it);
 		++it;
 	}
 	m_listTracks.clear();

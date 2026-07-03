@@ -3,7 +3,9 @@
 #include <list>
 #include <string>
 
-class CFxMod;
+class CRTMod;
+class CRTModTimeSource;
+struct SRTModInitDesc;
 
 class CRTModSet
 {
@@ -30,15 +32,15 @@ public:
 	const std::string& GetTag() const { return m_strTag; }
 	void SetTag(const std::string& strTag) { m_strTag = strTag; }
 
-	std::list<CFxMod*>& GetTracks() { return m_listTracks; }
-	const std::list<CFxMod*>& GetTracks() const { return m_listTracks; }
+	std::list<CRTMod*>& GetTracks() { return m_listTracks; }
+	const std::list<CRTMod*>& GetTracks() const { return m_listTracks; }
 
-	void AddTrack(CFxMod* pTrack);
+	CRTMod* CreateTrack(int nPackedTypeId, CRTModTimeSource* pTimeSource, int nParam2, SRTModInitDesc* pDesc, int nSharedParam);
 	void ClearTracks();
 
 private:
 	unsigned int m_dwId;
-	std::list<CFxMod*> m_listTracks;
+	std::list<CRTMod*> m_listTracks;
 	unsigned int m_dwFlags;
 	bool m_bBuilt;
 	std::string m_strName;

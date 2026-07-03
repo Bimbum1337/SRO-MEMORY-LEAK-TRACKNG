@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-class CFxMod;
+class CRTMod;
 
 class CRTModPalette
 {
@@ -15,9 +15,9 @@ public:
     static CRTModPalette* AllocateAndConstruct();
     static void ReleaseToPool(CRTModPalette* pPalette);
 
-    CFxMod* AddTrack(CFxMod* pTrack);
-    CFxMod* AddNamedTrack(CFxMod* pTrack);
-    void InsertKeyedTrack(int nKey, CFxMod* pTrack);
+    CRTMod* AddTrack(CRTMod* pTrack);
+    CRTMod* AddNamedTrack(CRTMod* pTrack);
+    void InsertKeyedTrack(int nKey, CRTMod* pTrack);
     void Clear();
 
     unsigned int GetTrackCount() const;
@@ -38,9 +38,9 @@ protected:
     bool m_bLocked0;
     bool m_bLocked1;
 
-    std::vector<CFxMod*> m_tracks;
-    std::vector<CFxMod*> m_namedTracks;
-    std::map<int, CFxMod*> m_keyedTracks;
+    std::vector<CRTMod*> m_tracks;
+    std::vector<CRTMod*> m_namedTracks;
+    std::map<int, CRTMod*> m_keyedTracks;
 
     std::vector<int> m_reservedIds;
 };
